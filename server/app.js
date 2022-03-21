@@ -15,8 +15,11 @@ mongoose
     console.log("Failed to connect to MongoDB", err);
   });
 
+// middleware
 app.use(express.json());
 
+// Routes
+app.use("/api/comments", commentRoute);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
