@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-
+const commentRoute = require("./routes/comments");
 // the app
 const app = express();
 

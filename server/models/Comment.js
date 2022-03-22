@@ -12,7 +12,7 @@ const CommentSchema = new mongoose.Schema(
     },
     type: { type: String, enum: ["comment", "reply"], default: "comment" },
     replies: { type: Array, default: [] },
-    user: {
+    userId: {
       type: String,
       min: 3,
       max: 7,

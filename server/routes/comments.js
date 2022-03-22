@@ -1,22 +1,29 @@
-const router = require("express").Router();
+const commentRoute = require("express").Router();
 
 const {
   getComments,
   createComment,
   updateComment,
   deleteComment,
+  upVote,
+  downVote,
 } = require("../controllers/commentController");
 
 // Read comments and replies
-router.get("/:userId/comment/all", getComments);
+commentRoute.get("/comment/all", getComments);
 
 // Create commnets and Replies
-router.post("/:userId/comment", createComment);
+commentRoute.post("/comment", createComment);
 
 // Update a comment and reply
-router.put("/:userId/comment/:commentId", updateComment);
+commentRoute.put("/:userId/comment/:commentId", updateComment);
 
 // Delete a comment and reply
-router.delete("/:userId/comment/:commentId", deleteComment);
+commentRoute.delete("/:userId/comment/:commentId", deleteComment);
 
-module.exports = router;
+// upvote a comment
+commentRoute.put("/:userId/comment/:commentId/upvote", upVote);
+
+// downvote a comment
+commentRoute.put("/:userId/comment/:commentId/upVote", downVote);
+module.exports = commentRoute;
