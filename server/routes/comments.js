@@ -10,20 +10,20 @@ const {
 } = require("../controllers/commentController");
 
 // Read comments and replies
-commentRoute.get("/comment/all", getComments);
+commentRoute.get("/all", getComments);
 
 // Create commnets and Replies
-commentRoute.post("/comment", createComment);
+commentRoute.post("/", createComment);
 
 // Update a comment and reply
-commentRoute.put("/:userId/comment/:commentId", updateComment);
+commentRoute.put("/:userId/:commentId", updateComment);
 
 // Delete a comment and reply
-commentRoute.delete("/:userId/comment/:commentId", deleteComment);
+commentRoute.delete("/:userId/:commentId", deleteComment);
 
 // upvote a comment
-commentRoute.put("/:userId/comment/:commentId/upvote", upVote);
+commentRoute.put("/:userId/:commentId/upvote", upVote);
 
 // downvote a comment
-commentRoute.put("/:userId/comment/:commentId/upVote", downVote);
+commentRoute.put("/:userId/:commentId/downvote", downVote);
 module.exports = commentRoute;

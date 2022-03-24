@@ -17,7 +17,6 @@ const CommentSchema = new mongoose.Schema(
       min: 3,
       max: 7,
       required: [true, "This is required!"],
-      unique: true,
     },
   },
   { timestamps: true }

@@ -1,10 +1,11 @@
 const Comment = require("../models/Comment");
 
-exports.getComments = (req, res) => {
+exports.getComments = async (req, res) => {
   try {
-    const comments = Comment.get;
+    const comments = await Comment.find({});
+    res.status(200).json(comments);
   } catch (err) {
-    res.status(500).json(err.send);
+    res.status(500).json(err.message);
   }
 };
 
@@ -14,23 +15,31 @@ exports.createComment = async (req, res) => {
     const newComment = await comment.save();
     res.status(200).json(newComment);
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err.send);
+    res.status(500).json(err.message);
   }
 };
 exports.updateComment = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const commentId = req.params.commentId;
-    const comment = await Comment.findById(commentId);
+    console.log("commentId:", typeof req.params.commentId);
+    const comment = await Comment.findById(req.params.commentId.trim());
     if (comment.userId === userId) {
-      const newComment = await comment.updateOne({ $set: req.body });
-      res.status(200).json(newComment);
+      const updatedComment = await Comment.findOneAndUpdate(
+        {
+          _id: comment._id,
+        },
+        { ...req.body },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+      res.status(200).json(updatedComment);
     } else {
       res.status(403).json("You can only update your own comment!");
     }
   } catch (err) {
-    res.status(500).json(err.send);
+    res.status(500).json(err.message);
   }
 };
 exports.deleteComment = async (req, res) => {
@@ -45,10 +54,54 @@ exports.deleteComment = async (req, res) => {
       res.status(403).json("You can only delete your own comment!");
     }
   } catch (err) {
-    res.status(500).json(err.send);
+    res.status(500).json(err.message);
   }
 };
 
-exports.upVote = () => {};
+exports.upVote = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const comment = await Comment.findById(req.params.commentId.trim());
+    if (!(comment.userId === userId)) {
+      const updatedComment = await Comment.findOneAndUpdate(
+        {
+          _id: comment._id,
+        },
+        { score: ++comment.score },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+      res.status(200).json(updatedComment);
+    } else {
+      res.status(403).json("You can't upvote your own comment!");
+    }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
 
-exports.downVote = () => {};
+exports.downVote = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const comment = await Comment.findById(req.params.commentId.trim());
+    if (!(comment.userId === userId)) {
+      const updatedComment = await Comment.findOneAndUpdate(
+        {
+          _id: comment._id,
+        },
+        { score: --comment.score },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+      res.status(200).json(updatedComment);
+    } else {
+      res.status(403).json("You can't downvote your own comment!");
+    }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
