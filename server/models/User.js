@@ -14,9 +14,8 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password is required!"],
   },
   image: {
-    data: Buffer,
-    contentType: String,
-    default: "images/avatar.jpg",
+    type: String,
+    default: "/images/profile.png",
   },
 });
 

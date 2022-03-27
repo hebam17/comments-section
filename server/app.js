@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const commentRoute = require("./routes/comments");
+const userRoute = require("./routes/users");
 // the app
 const app = express();
 
@@ -17,9 +18,9 @@ mongoose
 
 // middleware
 app.use(express.json());
-
 // Routes
 app.use("/api/comments", commentRoute);
+app.use("/api/users", userRoute);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
