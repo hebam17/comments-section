@@ -21,19 +21,35 @@ body {
   --paragraph-font-size: 16px;
 }
 
+/* Scores component */
 .scores {
   border-radius: 0.7rem;
-  padding: 0.5rem;
-  width: 1.5rem;
+  padding: 0.7rem 0.9rem;
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   background: var(--very-light-gray);
 }
 
 .score-value {
-  margin: 0.8rem auto 0.6rem auto;
+  margin: 1rem auto 0.8rem auto;
   color: var(--moderate-blue);
   font-weight: 500;
 }
+/* //////////////////// */
+
+/* Reply component */
+.reply {
+  display: flex;
+  padding: 1rem;
+  width: fit-content;
+}
+.reply-text {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  color: var(--moderate-blue);
+  font-size: 16px;
+}
+/* //////////////////// */
