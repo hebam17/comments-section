@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
+body {
+  font-family: "Rubik", sans-serif;
+}
 /* variables */
 :root {
   --mobile-size: 375px;
@@ -16,4 +19,21 @@
   --very-light-gray: hsl(228, 33%, 97%);
   --white: hsl(0, 0%, 100%);
   --paragraph-font-size: 16px;
+}
+
+.scores {
+  border-radius: 0.7rem;
+  padding: 0.5rem;
+  width: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  background: var(--very-light-gray);
+}
+
+.score-value {
+  margin: 0.8rem auto 0.6rem auto;
+  color: var(--moderate-blue);
+  font-weight: 500;
 }
