@@ -23,7 +23,7 @@ body {
 
 /* Scores component */
 .scores {
-  border-radius: 0.7rem;
+  border-radius: 0.5rem;
   padding: 0.7rem 0.9rem;
   width: fit-content;
   display: flex;
@@ -33,11 +33,41 @@ body {
   background: var(--very-light-gray);
 }
 
+.plus {
+  background-image: url("./images/icon-plus.svg");
+  background-repeat: no-repeat;
+}
+
+.minus {
+  background-image: url("./images/icon-minus.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .score-value {
   margin: 1rem auto 0.8rem auto;
   color: var(--moderate-blue);
   font-weight: 500;
 }
+
+/* the hover state */
+.plus:hover {
+  background-image: url("./hover-images/icon-plus-hover.svg");
+  background-repeat: no-repeat;
+}
+.plus:hover img {
+  visibility: hidden;
+}
+.minus:hover {
+  background-image: url("./hover-images/icon-minus-hover.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* .minus:hover img {
+  visibility: hidden;
+} */
+
 /* //////////////////// */
 
 /* Reply component */
@@ -45,11 +75,57 @@ body {
   display: flex;
   padding: 1rem;
   width: fit-content;
+  color: var(--moderate-blue);
 }
+
 .reply-text {
   margin-left: 0.5rem;
   font-weight: 500;
-  color: var(--moderate-blue);
   font-size: 16px;
 }
+.reply-image {
+  margin-top: 0.2rem;
+  background-image: url("./images/icon-reply.svg");
+  background-repeat: no-repeat;
+}
+
+.reply:hover {
+  color: var(--light-grayish-blue) !important;
+  cursor: pointer;
+}
+.reply:hover .reply-image {
+  background-image: url("./hover-images/icon-reply-hover.svg");
+  background-repeat: no-repeat;
+}
+.reply:hover .reply-image img {
+  visibility: hidden;
+}
+
+/* in the active state */
+.reply-active {
+  padding: 0.9rem 1.8rem;
+  background: var(--moderate-blue);
+  color: var(--white);
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+.reply-text-active {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.reply-active:hover {
+  background: var(--light-grayish-blue);
+  color: var(--very-light-gray);
+  font-size: 16px;
+  cursor: pointer;
+}
 /* //////////////////// */
+
+/* transition class */
+.trans {
+  transition: all 0.5s;
+}

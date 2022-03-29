@@ -6,7 +6,7 @@ export default function Comment() {
   return (
     <div>
       <Scores />
-      <Reply />
+      <Reply active={false} />
     </div>
   );
 }
