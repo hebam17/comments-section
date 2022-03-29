@@ -1,4 +1,5 @@
 import React from "react";
+import Edit from "./Edit";
 import Reply from "./Reply";
 import Scores from "./Scores";
 
@@ -7,6 +8,7 @@ export default function Comment() {
     <div>
       <Scores />
       <Reply active={false} />
+      <Edit />
     </div>
   );
 }

@@ -42,8 +42,6 @@ body {
   background-image: url("./images/icon-minus.svg");
   background-repeat: no-repeat;
   background-position: center;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 .score-value {
   margin: 1rem auto 0.8rem auto;
@@ -56,17 +54,12 @@ body {
   background-image: url("./hover-images/icon-plus-hover.svg");
   background-repeat: no-repeat;
 }
-.plus:hover img {
-  visibility: hidden;
-}
+
 .minus:hover {
   background-image: url("./hover-images/icon-minus-hover.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
-/* .minus:hover img {
-  visibility: hidden;
-} */
 
 /* //////////////////// */
 
@@ -129,3 +122,37 @@ body {
 .trans {
   transition: all 0.5s;
 }
+
+/* Edit component */
+.edit {
+  display: flex;
+  padding: 1rem;
+  width: fit-content;
+  color: var(--moderate-blue);
+}
+
+.edit-text {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.edit-image {
+  margin-top: 0.2rem;
+  background-image: url("./images/icon-edit.svg");
+  background-repeat: no-repeat;
+}
+
+.edit:hover {
+  color: var(--light-grayish-blue) !important;
+  cursor: pointer;
+}
+.edit:hover .edit-image {
+  background-image: url("./hover-images/icon-edit-hover.svg");
+  background-repeat: no-repeat;
+}
+.edit:hover .edit-image img {
+  visibility: hidden;
+}
+
+/* /////////////// */

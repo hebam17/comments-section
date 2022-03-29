@@ -3,15 +3,11 @@ import React from "react";
 export default function Reply({ active }) {
   if (!active) {
     return (
-      <div className="reply trans">
-        <div className="reply-image">
-          <img
-            src="/images/icon-reply.svg"
-            alt="reply arrow"
-            style={{ visibility: "hidden" }}
-          />
+      <div className="reply">
+        <div className="reply-image trans">
+          <img src="/images/icon-reply.svg" alt="reply arrow" />
         </div>
-        <div className="reply-text">Reply</div>
+        <div className="reply-text  trans">Reply</div>
       </div>
     );
   } else {
