@@ -81,7 +81,9 @@ body {
   background-image: url("./images/icon-reply.svg");
   background-repeat: no-repeat;
 }
-
+.reply-image img {
+  visibility: hidden;
+}
 .reply:hover {
   color: var(--light-grayish-blue) !important;
   cursor: pointer;
@@ -89,9 +91,6 @@ body {
 .reply:hover .reply-image {
   background-image: url("./hover-images/icon-reply-hover.svg");
   background-repeat: no-repeat;
-}
-.reply:hover .reply-image img {
-  visibility: hidden;
 }
 
 /* in the active state */
@@ -156,3 +155,70 @@ body {
 }
 
 /* /////////////// */
+/* Delete component */
+.delete {
+  display: flex;
+  padding: 1rem;
+  width: fit-content;
+  color: var(--soft-red);
+}
+
+.delete-text {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.delete-image {
+  margin-top: 0.1rem;
+  background-image: url("./images/icon-delete.svg");
+  background-repeat: no-repeat;
+}
+
+.delete:hover {
+  color: var(--pale-red) !important;
+  cursor: pointer;
+}
+.delete:hover .delete-image {
+  background-image: url("./hover-images/icon-delete-hover.svg");
+  background-repeat: no-repeat;
+}
+.delete:hover .delete-image img {
+  visibility: hidden;
+}
+
+/* /////////////// */
+
+/* Info component */
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  font-size: var(--paragraph-font-size);
+}
+
+.info-name {
+  margin: 0 1rem;
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
+.info-duration {
+  color: var(--grayish-blue);
+  font-weight: 500;
+}
+
+.you {
+  margin-right: 1rem;
+  padding: 0.3rem 0.6rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--moderate-blue);
+  display: flex;
+  justify-content: center;
+  align-content: center !important;
+  font-size: var(--paragraph-font-size);
+}
+/* ////////////// */
