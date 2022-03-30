@@ -13,7 +13,7 @@ export default function Reply({ active }) {
   } else {
     return (
       <div className="reply-active trans">
-        <div className="reply-text-active">Reply</div>
+        <div className="reply-text-active">REPLY</div>
       </div>
     );
   }

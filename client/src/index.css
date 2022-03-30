@@ -105,7 +105,7 @@ body {
   border-radius: 0.5rem;
 }
 .reply-text-active {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
 }
 
@@ -213,7 +213,7 @@ body {
   margin-right: 1rem;
   padding: 0.3rem 0.6rem 0.4rem;
   border-radius: 3px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--white);
   background-color: var(--moderate-blue);
   display: flex;
@@ -222,3 +222,51 @@ body {
   font-size: var(--paragraph-font-size);
 }
 /* ////////////// */
+
+/* Update component */
+.update {
+  padding: 0.7rem 1rem;
+  background: var(--moderate-blue);
+  color: var(--white);
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+.update-text {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.update:hover {
+  background: var(--light-grayish-blue);
+  color: var(--very-light-gray);
+  font-size: 16px;
+  cursor: pointer;
+}
+/* //////////////// */
+
+/* Send component */
+.send {
+  padding: 0.9rem 1.8rem;
+  background: var(--moderate-blue);
+  color: var(--white);
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+.send-text {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.send:hover {
+  background: var(--light-grayish-blue);
+  color: var(--very-light-gray);
+  font-size: 16px;
+  cursor: pointer;
+}
+/* //////////////// */

@@ -4,6 +4,8 @@ import Edit from "./Edit";
 import Info from "./Info";
 import Reply from "./Reply";
 import Scores from "./Scores";
+import Send from "./Send";
+import Update from "./Update";
 
 export default function Comment() {
   return (
@@ -13,6 +15,8 @@ export default function Comment() {
       <Edit />
       <Delete />
       <Info profileUser={"you-pic"} />
+      <Update />
+      <Send />
     </div>
   );
 }
