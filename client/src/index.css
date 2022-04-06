@@ -2,6 +2,7 @@
 
 body {
   font-family: "Rubik", sans-serif;
+  background: var(--very-light-gray);
 }
 /* variables */
 :root {
@@ -25,6 +26,7 @@ body {
 .scores {
   border-radius: 0.5rem;
   padding: 0.7rem 0.9rem;
+  box-sizing: border-box;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -53,12 +55,14 @@ body {
 .plus:hover {
   background-image: url("./hover-images/icon-plus-hover.svg");
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .minus:hover {
   background-image: url("./hover-images/icon-minus-hover.svg");
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 /* //////////////////// */
@@ -66,7 +70,7 @@ body {
 /* Reply component */
 .reply {
   display: flex;
-  padding: 1rem;
+  padding: 1rem 0 1rem 1rem;
   width: fit-content;
   color: var(--moderate-blue);
 }
@@ -196,6 +200,9 @@ body {
   align-items: center;
   width: fit-content;
   font-size: var(--paragraph-font-size);
+  margin-bottom: 0;
+  margin-top: 0;
+  /* padding-bottom: 0; */
 }
 
 .info-name {
@@ -270,3 +277,87 @@ body {
   cursor: pointer;
 }
 /* //////////////// */
+
+/* Comments component */
+.comments {
+  width: 55vw;
+  /* border: 1px solid; */
+  margin: 4rem auto;
+}
+
+/* Comment component */
+.comment {
+  display: flex;
+  /* border: 1px solid; */
+  width: 100%;
+  height: fit-content;
+  /* padding-bottom: 1.5rem; */
+  /* padding-top: 1.5rem; */
+  background: var(--white);
+  margin-bottom: 1.2rem;
+  border-radius: 5px;
+}
+.comment-scores {
+  display: flex;
+  align-items: center;
+  margin: auto 1.6rem;
+  padding-bottom: 1rem;
+}
+.comment-info {
+  flex-grow: 9;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-right: 2rem;
+  padding-bottom: 1.5rem;
+}
+.comment-controllers {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+  margin-bottom: -1rem;
+}
+
+.comment-controllers .info {
+  margin-right: auto;
+}
+
+.text {
+  position: relative;
+  margin-top: 0;
+}
+.text textarea {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* resize: both; */
+  box-sizing: border-box;
+  font-size: var(--paragraph-font-size);
+  font-weight: 500;
+  color: var(--grayish-blue);
+  line-height: 1.5rem;
+  overflow-y: hidden;
+  font-family: "Rubik", sans-serif;
+  padding-right: none !important;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+.text .invisible {
+  visibility: hidden;
+  line-height: 1.5rem;
+  font-size: var(--paragraph-font-size);
+  font-weight: 500;
+}
+/* ///////////////// */
+
+/* Replies component */
+
+.comment-replies {
+  margin-left: 3rem;
+  padding-left: 3rem;
+  border-left: 1px solid var(--light-grayish-blue);
+}
