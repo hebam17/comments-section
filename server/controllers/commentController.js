@@ -1,8 +1,9 @@
 const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 exports.getComments = async (req, res) => {
   try {
-    const comments = await Comment.find({});
+    let comments = await Comment.find({}).populate("user");
     res.status(200).json(comments);
   } catch (err) {
     res.status(500).json(err.message);
@@ -18,10 +19,10 @@ exports.createComment = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 exports.updateComment = async (req, res) => {
   try {
     const userId = req.params.userId;
-    console.log("commentId:", typeof req.params.commentId);
     const comment = await Comment.findById(req.params.commentId.trim());
     if (comment.userId === userId) {
       const updatedComment = await Comment.findOneAndUpdate(
@@ -42,6 +43,7 @@ exports.updateComment = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 exports.deleteComment = async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -101,6 +103,27 @@ exports.downVote = async (req, res) => {
     } else {
       res.status(403).json("You can't downvote your own comment!");
     }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+exports.addReply = async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+    const newReply = await new Comment(req.body);
+    comment.replies.push(newReply);
+    const updatedComment = await Comment.findOneAndUpdate(
+      {
+        _id: comment._id,
+      },
+      { replies: comment.replies },
+      {
+        new: true,
+        upsert: true,
+      }
+    );
+    res.status(200).json(updatedComment);
   } catch (err) {
     res.status(500).json(err.message);
   }

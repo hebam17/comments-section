@@ -1,36 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function Info({ profileUser, user }) {
+export default function Info({ profileUser, user, createdAt }) {
   if (profileUser === "user") {
     return (
       <div className="info">
         <div className="info-image">
-          <img
-            src={user.image.png || "/images/profile.png"}
-            alt="avatar"
-            width="40px"
-          />
+          <img src={user.image.png || user.image} alt="avatar" width="40px" />
         </div>
         <div className="info-name">{user.username}</div>
-        <div className="info-duration">1 month ago</div>
+        <div className="info-duration">{createdAt}</div>
       </div>
     );
   } else if (profileUser === "you") {
     return (
       <div className="info">
         <div className="info-image">
-          <img src="/images/avatars/image-amyrobson.webp" alt="avatar" />
+          <img src={user.image.png || user.image} alt="avatar" width="40px" />
         </div>
-        <div className="info-name">amyrobson</div>
+        <div className="info-name">{user.username}</div>
         <div className="you">you</div>
-        <div className="info-duration">1 month ago</div>
+        <div className="info-duration">{createdAt}</div>
       </div>
     );
-  } else if (profileUser === "you-pic") {
+  } else if (profileUser === "you_pic") {
     return (
       <div className="info">
         <div className="info-image">
-          <img src="/images/avatars/image-amyrobson.webp" alt="avatar" />
+          <img src={user.image.png || user.image} alt="avatar" width="40px" />
         </div>
       </div>
     );

@@ -18,3 +18,15 @@ exports.getUser = async (req, res) => {
     res.status(404).json("This user does not exists!");
   }
 };
+
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    console.log("user:", user);
+    console.log("userId:", req.params.userId);
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(404).json("This user does not exists!");
+  }
+};

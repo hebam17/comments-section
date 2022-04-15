@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const User = require("./User");
+const Schema = mongoose.Schema;
 
 const CommentSchema = new mongoose.Schema(
   {
@@ -12,11 +14,9 @@ const CommentSchema = new mongoose.Schema(
     },
     type: { type: String, enum: ["comment", "reply"], default: "comment" },
     replies: { type: Array, default: [] },
-    userId: {
-      type: String,
-      min: 3,
-      max: 7,
-      required: [true, "This is required!"],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }

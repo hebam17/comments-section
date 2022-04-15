@@ -7,13 +7,20 @@ const {
   deleteComment,
   upVote,
   downVote,
+  addReply,
 } = require("../controllers/commentController");
 
 // Read comments and replies
 commentRoute.get("/all", getComments);
 
-// Create commnets and Replies
+// Create comments and Replies
 commentRoute.post("/", createComment);
+
+// add a reply
+commentRoute.put("/reply/:commentId", addReply);
+
+// delete a reply
+// commentRoute.delete("/:userId/:commentId/:replyId", deleteReply);
 
 // Update a comment and reply
 commentRoute.put("/:userId/:commentId", updateComment);
@@ -26,4 +33,5 @@ commentRoute.put("/:userId/:commentId/upvote", upVote);
 
 // downvote a comment
 commentRoute.put("/:userId/:commentId/downvote", downVote);
+
 module.exports = commentRoute;

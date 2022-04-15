@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import Info from "./Info";
@@ -8,26 +8,53 @@ import Scores from "./Scores";
 import Send from "./Send";
 import Update from "./Update";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, currentUser }) {
   const [text, setText] = useState(comment.content);
   const handleText = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     setText(e.target.value);
   };
+
   return (
     <>
       <div className="comment">
         <div className="comment-scores">
-          <Scores />
+          <Scores
+            score={comment.score}
+            currentUser={currentUser}
+            commentId={comment._id}
+          />
         </div>
         <div className="comment-info">
           <div className="comment-controllers">
-            <div className="info">
-              <Info profileUser="user" user={comment.user} />
-            </div>
-            <div className="reply">
-              <Reply />
-            </div>
+            {currentUser.username === comment.user.username ? (
+              <div className="info">
+                <Info
+                  profileUser="you"
+                  user={comment.user}
+                  createdAt={comment.createdAt}
+                />
+              </div>
+            ) : (
+              <div className="info">
+                <Info
+                  profileUser="user"
+                  user={comment.user}
+                  createdAt={comment.createdAt}
+                />
+              </div>
+            )}
+
+            {currentUser.username === comment.user.username ? (
+              <div className="comment-delete">
+                <Delete />
+                <Edit />
+              </div>
+            ) : (
+              <div className="comment-reply">
+                <Reply />
+              </div>
+            )}
           </div>
           <div className="text">
             <textarea
@@ -42,7 +69,12 @@ export default function Comment({ comment }) {
       </div>
       <div className="comment-replies">
         {comment.replies.map((reply) => (
-          <Replies comment={reply} key={reply.id} />
+          <Replies
+            currentUser={currentUser}
+            commentUser={comment.user.username}
+            comment={reply}
+            key={reply.id || reply._id}
+          />
         ))}
       </div>
     </>
