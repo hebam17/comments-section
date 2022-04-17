@@ -3,7 +3,13 @@ const User = require("../models/User");
 
 exports.getComments = async (req, res) => {
   try {
-    let comments = await Comment.find({}).populate("user");
+    let comments = await Comment.find({}).populate([
+      "user",
+      {
+        path: "replies",
+        populate: { path: "user", model: "User" },
+      },
+    ]);
     res.status(200).json(comments);
   } catch (err) {
     res.status(500).json(err.message);

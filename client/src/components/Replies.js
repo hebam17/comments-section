@@ -7,57 +7,47 @@ import Delete from "./Delete";
 import Edit from "./Edit";
 import axios from "axios";
 
-export default function Replies({ comment, currentUser, commentUser }) {
-  const [text, setText] = useState(comment.content);
+export default function Replies({ reply, currentUser, commentUser }) {
+  const [text, setText] = useState(reply.content);
   const location = useLocation();
 
   useEffect(() => {
-    const getUser = async () => {
-      if (location.pathname !== "/") {
-        const user = await axios.get(`/users/user/${comment.user}`);
-        console.log("user:", user);
-        comment.user = user.data;
-        console.log("comment.user:", typeof comment.user);
-        console.log("comment:", comment);
-      }
-    };
-    getUser();
-  }, [currentUser, comment, location.pathname]);
+    console.log("reply:", reply);
+  }, []);
   const handleText = (e) => {
     console.log(e.target);
     setText(e.target.value);
   };
 
   return (
-    // <div>Hello</div>
     <div className="comment ">
       <div className="comment-scores">
         <Scores
-          score={comment.score}
+          score={reply.score}
           currentUser={currentUser}
-          commentId={comment._id}
+          commentId={reply._id}
         />
       </div>
       <div className="comment-info">
         <div className="comment-controllers">
-          {currentUser.username === comment.user.username ? (
+          {currentUser.username === reply.user.username ? (
             <div className="info">
               <Info
                 profileUser="you"
-                user={comment.user}
-                createdAt={comment.createdAt}
+                user={reply.user}
+                createdAt={reply.createdAt}
               />
             </div>
           ) : (
             <div className="info">
               <Info
                 profileUser="user"
-                user={comment.user}
-                createdAt={comment.createdAt}
+                user={reply.user}
+                createdAt={reply.createdAt}
               />
             </div>
           )}
-          {currentUser.username === comment.user.username ? (
+          {currentUser.username === reply.user.username ? (
             <div className="comment-delete">
               <Delete />
               <Edit />

@@ -72,7 +72,7 @@ export default function Comment({ comment, currentUser }) {
           <Replies
             currentUser={currentUser}
             commentUser={comment.user.username}
-            comment={reply}
+            reply={reply}
             key={reply.id || reply._id}
           />
         ))}

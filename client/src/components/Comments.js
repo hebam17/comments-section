@@ -18,7 +18,6 @@ export default function Comments({ username }) {
         try {
           const res = await axios.get(`/comments/all`);
           setComments(res.data);
-          console.log("res.data comments:", res.data);
         } catch (err) {
           console.log(err.message);
         }

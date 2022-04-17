@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Info({ profileUser, user, createdAt }) {
   if (profileUser === "user") {
