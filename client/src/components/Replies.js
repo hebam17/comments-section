@@ -11,9 +11,6 @@ export default function Replies({ reply, currentUser, commentUser }) {
   const [text, setText] = useState(reply.content);
   const location = useLocation();
 
-  useEffect(() => {
-    console.log("reply:", reply);
-  }, []);
   const handleText = (e) => {
     console.log(e.target);
     setText(e.target.value);

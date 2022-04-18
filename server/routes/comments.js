@@ -8,6 +8,8 @@ const {
   upVote,
   downVote,
   addReply,
+  updateReplay,
+  deleteReply,
 } = require("../controllers/commentController");
 
 // Read comments and replies
@@ -19,13 +21,16 @@ commentRoute.post("/", createComment);
 // add a reply
 commentRoute.put("/reply/:commentId", addReply);
 
-// delete a reply
-// commentRoute.delete("/:userId/:commentId/:replyId", deleteReply);
+// update a reply
+commentRoute.put("/reply/:username/:commentId/:replyId", updateReplay);
 
-// Update a comment and reply
+// delete a reply
+commentRoute.delete("/reply/:userId/:commentId/:replyId", deleteReply);
+
+// Update a comment
 commentRoute.put("/:userId/:commentId", updateComment);
 
-// Delete a comment and reply
+// Delete a comment
 commentRoute.delete("/:userId/:commentId", deleteComment);
 
 // upvote a comment

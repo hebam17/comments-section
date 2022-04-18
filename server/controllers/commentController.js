@@ -118,12 +118,13 @@ exports.addReply = async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.commentId);
     const newReply = await new Comment(req.body);
+    newReply.createdAt = Date.now();
     comment.replies.push(newReply);
     const updatedComment = await Comment.findOneAndUpdate(
       {
         _id: comment._id,
       },
-      { replies: comment.replies },
+      { replies: comment.replies, timestamps: true },
       {
         new: true,
         upsert: true,
@@ -134,3 +135,32 @@ exports.addReply = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
+//
+exports.updateReplay = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    const comment = await Comment.findById(req.params.commentId);
+    let reply = comment.replies.filter((rep) => {
+      return rep._id == req.params.replyId;
+    })[0];
+    const newReply = { ...reply, ...req.body };
+
+    comment.replies.splice(comment.replies.indexOf(reply), 1, newReply);
+    const newComment = await Comment.findByIdAndUpdate(
+      {
+        _id: comment._id,
+      },
+      { replies: comment.replies },
+      {
+        new: true,
+        upsert: true,
+      }
+    );
+
+    res.status(200).json(newComment);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+exports.deleteReply = (req, res) => {};

@@ -11,7 +11,6 @@ import Update from "./Update";
 export default function Comment({ comment, currentUser }) {
   const [text, setText] = useState(comment.content);
   const handleText = (e) => {
-    // console.log(e.target);
     setText(e.target.value);
   };
 
