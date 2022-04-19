@@ -50,7 +50,7 @@ export default function Comments({ username }) {
           key={comment.id || comment._id}
         />
       ))}
-      <NewComment currentUser={user} />
+      <NewComment currentUser={user} reply={false} />
     </div>
   );
 }

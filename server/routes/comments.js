@@ -25,7 +25,7 @@ commentRoute.put("/reply/:commentId", addReply);
 commentRoute.put("/reply/:username/:commentId/:replyId", updateReplay);
 
 // delete a reply
-commentRoute.delete("/reply/:userId/:commentId/:replyId", deleteReply);
+commentRoute.delete("/reply/:username/:commentId/:replyId", deleteReply);
 
 // Update a comment
 commentRoute.put("/:userId/:commentId", updateComment);

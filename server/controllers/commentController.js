@@ -142,25 +142,59 @@ exports.updateReplay = async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
     const comment = await Comment.findById(req.params.commentId);
     let reply = comment.replies.filter((rep) => {
-      return rep._id == req.params.replyId;
+      return rep._id.toString() === req.params.replyId;
     })[0];
-    const newReply = { ...reply, ...req.body };
 
-    comment.replies.splice(comment.replies.indexOf(reply), 1, newReply);
-    const newComment = await Comment.findByIdAndUpdate(
-      {
-        _id: comment._id,
-      },
-      { replies: comment.replies },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
+    if (user._id.equals(reply.user)) {
+      const newReply = { ...reply, ...req.body };
 
-    res.status(200).json(newComment);
+      comment.replies.splice(comment.replies.indexOf(reply), 1, newReply);
+      const newComment = await Comment.findByIdAndUpdate(
+        {
+          _id: comment._id,
+        },
+        { replies: comment.replies },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+
+      res.status(200).json(newComment);
+    } else {
+      res.status(403).json("You can only update your own reply!");
+    }
   } catch (err) {
     res.status(500).json(err.message);
   }
 };
-exports.deleteReply = (req, res) => {};
+
+exports.deleteReply = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    const comment = await Comment.findById(req.params.commentId);
+    let reply = comment.replies.filter((rep) => {
+      return rep._id.toString() === req.params.replyId;
+    })[0];
+
+    if (user._id.equals(reply.user)) {
+      comment.replies.splice(comment.replies.indexOf(reply), 1);
+      const newComment = await Comment.findByIdAndUpdate(
+        {
+          _id: comment._id,
+        },
+        { replies: comment.replies },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+
+      res.status(200).json("deleted successfully");
+    } else {
+      res.status(403).json("You can only delete your own reply!");
+    }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};

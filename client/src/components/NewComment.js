@@ -9,7 +9,7 @@ export default function NewComment({ currentUser, reply = false }) {
     console.log(e.target);
     setText(e.target.value);
   };
-  // console.log("currentUser:", currentUser);
+
   return (
     <div className="comment-new">
       <div className="new-info">
