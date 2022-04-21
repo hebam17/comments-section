@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import flashData from "../data.json";
 import NewComment from "./NewComment";
 import axios from "axios";
+import { handleComment } from "../utils";
 
 export default function Comments({ username }) {
   const params = useParams();
@@ -50,7 +51,11 @@ export default function Comments({ username }) {
           key={comment.id || comment._id}
         />
       ))}
-      <NewComment currentUser={user} reply={false} />
+      <NewComment
+        currentUser={user}
+        reply={false}
+        handleComment={handleComment}
+      />
     </div>
   );
 }

@@ -98,7 +98,7 @@ body {
 
 /* in the active state */
 .reply-active {
-  padding: 0.9rem 1.8rem;
+  padding: 0.6rem 1rem;
   background: var(--moderate-blue);
   color: var(--white);
   width: fit-content;
@@ -371,15 +371,19 @@ body {
 /* NewComment component */
 .comment-new {
   display: flex;
-  /* border: 1px solid; */
+  margin-bottom: 1rem;
   background: var(--white);
   justify-content: space-between;
   padding: 1rem;
 }
 
+.new-info {
+  padding-top: 0.5rem;
+}
 .text-new {
   min-height: 5rem;
-  width: 78%;
+  width: 75%;
+  margin: auto 1rem;
 }
 
 .text-new textarea {
@@ -389,8 +393,16 @@ body {
   border-radius: 5px;
 }
 
+.text-new textarea:focus {
+  border: 1px solid var(--moderate-blue);
+}
+
 .text-new textarea::placeholder {
   font-size: var(--paragraph-font-size);
   color: var(--grayish-blue);
+}
+.comment-new-reply,
+.comment-new-send {
+  padding-top: 0.5rem;
 }
 /* ///////////////////// */

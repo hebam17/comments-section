@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Reply({ active }) {
+export default function Reply({ active, handleReply, handleReplyActive }) {
   if (!active) {
     return (
-      <div className="reply">
+      <div className="reply" onClick={handleReply}>
         <div className="reply-image trans">
           <img src="/images/icon-reply.svg" alt="reply arrow" />
         </div>
@@ -12,7 +12,7 @@ export default function Reply({ active }) {
     );
   } else {
     return (
-      <div className="reply-active trans">
+      <div className="reply-active trans" onClick={handleReplyActive}>
         <div className="reply-text-active">REPLY</div>
       </div>
     );

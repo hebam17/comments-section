@@ -124,7 +124,7 @@ exports.addReply = async (req, res) => {
       {
         _id: comment._id,
       },
-      { replies: comment.replies, timestamps: true },
+      { replies: comment.replies },
       {
         new: true,
         upsert: true,
