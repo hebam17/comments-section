@@ -24,8 +24,6 @@ exports.handleReplyActive = async (
 };
 
 exports.handleComment = async (text, setText, currentUser) => {
-  console.log(text);
-  console.log(currentUser);
   try {
     await axios.post("/comments/", {
       content: text,
@@ -36,5 +34,97 @@ exports.handleComment = async (text, setText, currentUser) => {
     window.location.reload(true);
   } catch (err) {
     console.log(err.message);
+  }
+};
+
+exports.handleEditComment = (textRef, setUpdate) => {
+  textRef.current.readOnly = false;
+  textRef.current.focus();
+  textRef.current.selectionStart = textRef.current.value.length;
+  setUpdate(true);
+  textRef.current.parentNode.classList.add("text-edit");
+};
+
+// try {
+//   await axios.put(`/comments/${currentUser._id}/${comment._id}`, {
+//     content: text,
+//   });
+//   window.location.reload(true);
+// } catch (err) {
+//   console.log(err.message);
+// }
+
+exports.handleUpdateComment = async (comment, currentUser, text) => {
+  console.log(comment, currentUser);
+  try {
+    await axios.put(`/comments/${currentUser._id}/${comment._id}`, {
+      content: text,
+    });
+    window.location.reload(true);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+exports.handleUpdateReply = async (reply, comment, currentUser, text) => {
+  console.log(comment, currentUser);
+  try {
+    await axios.put(
+      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`,
+      {
+        content: text,
+      }
+    );
+    window.location.reload(true);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+exports.handleDeleteModal = (setDisplayModal, deleteRef) => {
+  console.log("deleteRef:", deleteRef);
+  setDisplayModal("block");
+  deleteRef.current.style.display = "block";
+};
+
+exports.handleCancelDelete = (setDisplayModal, deleteRef) => {
+  setDisplayModal("none");
+  deleteRef.current.style.display = "none";
+};
+
+exports.handleConfirmDeleteComment = async (
+  currentUser,
+  comment,
+  setDisplayModal,
+  deleteRef
+) => {
+  try {
+    await axios.delete(`/comments/${currentUser._id}/${comment._id}`);
+    console.log("deleted successfully!");
+    setDisplayModal("none");
+    deleteRef.current.style.display = "none";
+    window.location.reload(true);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.handleConfirmDeleteReply = async (
+  currentUser,
+  comment,
+  reply,
+  setDisplayModal,
+  deleteRef
+) => {
+  try {
+    await axios.delete(
+      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`
+    );
+    console.log("deleted successfully!");
+    setDisplayModal("none");
+    deleteRef.current.style.display = "none";
+    window.location.reload(true);
+  } catch (err) {
+    console.log(err);
   }
 };

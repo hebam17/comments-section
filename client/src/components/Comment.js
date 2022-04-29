@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import Info from "./Info";
@@ -6,13 +6,40 @@ import Replies from "./Replies";
 import Reply from "./Reply";
 import Scores from "./Scores";
 import NewComment from "./NewComment";
-import Send from "./Send";
 import Update from "./Update";
-import { handleReply, handleReplyActive } from "../utils";
+import {
+  handleReply,
+  handleReplyActive,
+  handleEditComment,
+  handleUpdateComment,
+  handleDeleteModal,
+  handleCancelDelete,
+  handleConfirmDeleteComment,
+} from "../utils";
+import { DeleteModal } from "./DeleteModal";
+import axios from "axios";
 
 export default function Comment({ comment, currentUser }) {
   const [text, setText] = useState(comment.content);
   const [replyComment, setReplyComment] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [displayModal, setDisplayModal] = useState("");
+  const textRef = useRef();
+  const deleteRef = useRef();
+  useEffect(() => {
+    if (deleteRef) {
+      try {
+        window.onclick = (e) => {
+          if (e.target.isEqualNode(deleteRef.current.firstElementChild)) {
+            setDisplayModal("none");
+            deleteRef.current.style.display = "none";
+          }
+        };
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  }, [deleteRef, displayModal]);
 
   const handleText = (e) => {
     setText(e.target.value);
@@ -20,6 +47,20 @@ export default function Comment({ comment, currentUser }) {
 
   return (
     <>
+      <DeleteModal
+        ref={deleteRef}
+        handleCancelDelete={() =>
+          handleCancelDelete(setDisplayModal, deleteRef)
+        }
+        handleConfirmDeleteComment={() =>
+          handleConfirmDeleteComment(
+            currentUser,
+            comment,
+            setDisplayModal,
+            deleteRef
+          )
+        }
+      />
       <div>
         <div className="comment">
           <div className="comment-scores">
@@ -51,8 +92,16 @@ export default function Comment({ comment, currentUser }) {
 
               {currentUser.username === comment.user.username ? (
                 <div className="comment-delete">
-                  <Delete />
-                  <Edit />
+                  <Delete
+                    handleDeleteModal={() =>
+                      handleDeleteModal(setDisplayModal, deleteRef)
+                    }
+                  />
+                  <Edit
+                    handleEditComment={() => {
+                      handleEditComment(textRef, setUpdate);
+                    }}
+                  />
                 </div>
               ) : (
                 <div className="comment-reply">
@@ -66,9 +115,19 @@ export default function Comment({ comment, currentUser }) {
                 value={text}
                 readOnly={true}
                 onChange={handleText}
+                ref={textRef}
               />
               <div className="invisible">{text}</div>
             </div>
+            {update && (
+              <div className="comment-update">
+                <Update
+                  handleUpdateComment={() =>
+                    handleUpdateComment(comment, currentUser, text)
+                  }
+                />
+              </div>
+            )}
           </div>
         </div>
         {replyComment && (
@@ -87,6 +146,7 @@ export default function Comment({ comment, currentUser }) {
               commentUser={comment.user.username}
               reply={reply}
               key={reply.id || reply._id}
+              comment={comment}
               handleReplyActive={(txt) => {
                 handleReplyActive(setReplyComment, txt);
               }}

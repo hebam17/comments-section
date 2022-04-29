@@ -43,19 +43,21 @@ export default function Comments({ username }) {
   }, [location.pathname, params.username]);
 
   return (
-    <div className="comments">
-      {comments.map((comment) => (
-        <Comment
+    <>
+      <div className="comments">
+        {comments.map((comment) => (
+          <Comment
+            currentUser={user}
+            comment={comment}
+            key={comment.id || comment._id}
+          />
+        ))}
+        <NewComment
           currentUser={user}
-          comment={comment}
-          key={comment.id || comment._id}
+          reply={false}
+          handleComment={handleComment}
         />
-      ))}
-      <NewComment
-        currentUser={user}
-        reply={false}
-        handleComment={handleComment}
-      />
-    </div>
+      </div>
+    </>
   );
 }

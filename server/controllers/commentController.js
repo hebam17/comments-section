@@ -30,7 +30,7 @@ exports.updateComment = async (req, res) => {
   try {
     const userId = req.params.userId;
     const comment = await Comment.findById(req.params.commentId.trim());
-    if (comment.userId === userId) {
+    if (comment.user.toString() === userId) {
       const updatedComment = await Comment.findOneAndUpdate(
         {
           _id: comment._id,
@@ -55,7 +55,7 @@ exports.deleteComment = async (req, res) => {
     const userId = req.params.userId;
     const commentId = req.params.commentId;
     const comment = await Comment.findById(commentId);
-    if (comment.userId === userId) {
+    if (comment.user.toString() === userId) {
       await comment.deleteOne();
       res.status(200).json("The comment was successfully deleted!");
     } else {
@@ -70,7 +70,7 @@ exports.upVote = async (req, res) => {
   try {
     const userId = req.params.userId;
     const comment = await Comment.findById(req.params.commentId.trim());
-    if (!(comment.userId === userId)) {
+    if (!(comment.user.toString() === userId)) {
       const updatedComment = await Comment.findOneAndUpdate(
         {
           _id: comment._id,
@@ -94,7 +94,7 @@ exports.downVote = async (req, res) => {
   try {
     const userId = req.params.userId;
     const comment = await Comment.findById(req.params.commentId.trim());
-    if (!(comment.userId === userId)) {
+    if (!(comment.user.toString() === userId)) {
       const updatedComment = await Comment.findOneAndUpdate(
         {
           _id: comment._id,

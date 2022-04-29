@@ -8,6 +8,7 @@ body {
 :root {
   --mobile-size: 375px;
   --desktop-size: 1440px;
+  --font-family: "Rubik", sans-serif;
   /* Primary */
   --moderate-blue: hsl(238, 40%, 52%);
   --soft-red: hsl(358, 79%, 66%);
@@ -253,7 +254,7 @@ body {
 
 /* Send component */
 .send {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   background: var(--moderate-blue);
   color: var(--white);
   width: fit-content;
@@ -264,7 +265,7 @@ body {
 }
 .send-text {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .send:hover {
@@ -289,6 +290,7 @@ body {
   background: var(--white);
   margin-bottom: 1rem;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 .comment-scores {
   display: flex;
@@ -297,12 +299,13 @@ body {
   padding-bottom: 1rem;
 }
 .comment-info {
-  flex-grow: 9;
+  flex: 9;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  overflow: hidden;
   padding-right: 1.5rem;
-  padding-bottom: 1.2rem;
+  padding-bottom: 1rem;
 }
 .comment-controllers {
   display: flex;
@@ -326,37 +329,41 @@ body {
 
 .text {
   position: relative;
-  margin-top: 0.5rem;
+  margin-top: 0.2rem;
+  box-sizing: border-box;
 }
 .text textarea {
   width: 100%;
   height: 100%;
+  max-width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  /* resize: both; */
   box-sizing: border-box;
   font-size: var(--paragraph-font-size);
   font-weight: 400;
-  color: var(--grayish-blue);
+  color: black;
   line-height: 1.3rem;
   overflow-y: hidden;
   font-family: "Rubik", sans-serif;
-  padding-right: none !important;
+  padding: 0.6rem 1.1rem;
   border: none;
   background-color: transparent;
   resize: none;
   outline: none;
 }
-.text-reply textarea::first-word {
-  font-weight: 500;
-  color: var(--dark-blue);
+.text textarea:focus {
+  border: 1px solid var(--moderate-blue);
+  border-radius: 0.5rem;
 }
+
 .text .invisible {
   visibility: hidden;
   line-height: 1.3rem;
   font-size: var(--paragraph-font-size);
   font-weight: 400;
+  padding: 0.6rem 0.9rem;
+  max-width: 100%;
 }
 /* ///////////////// */
 
@@ -395,6 +402,7 @@ body {
 
 .text-new textarea:focus {
   border: 1px solid var(--moderate-blue);
+  border-radius: 0.5rem;
 }
 
 .text-new textarea::placeholder {
@@ -406,3 +414,99 @@ body {
   padding-top: 0.5rem;
 }
 /* ///////////////////// */
+
+.text-edit {
+  min-height: 5rem;
+}
+
+/* comment and reply update */
+.comment-update {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* delete modal */
+.container-modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+  box-sizing: border-box;
+}
+.outer-modal {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-modal {
+  width: 20vw;
+  background: var(--white);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+}
+
+.title-modal h1 {
+  font-family: var(--font-family);
+  font-size: 1.2rem;
+  color: var(--dark-blue);
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.body-modal {
+  font-size: var(--paragraph-font-size);
+  color: var(--grayish-blue);
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.btns-modal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns-modal button {
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  color: var(--white);
+  border: none;
+  outline: none;
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+
+.btns-modal button:active,
+button:hover {
+  border: none;
+  outline: none;
+}
+
+.cancel-btn {
+  background: var(--grayish-blue);
+}
+
+.cancel-btn:hover {
+  background: var(--light-grayish-blue);
+}
+
+.delete-btn {
+  background-color: var(--soft-red);
+}
+
+.delete-btn:hover {
+  background-color: var(--pale-red);
+}
+
+/* MEDIA QUERY */
