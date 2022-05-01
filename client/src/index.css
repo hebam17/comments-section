@@ -25,7 +25,7 @@ body {
 
 /* Scores component */
 .scores {
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   padding: 0.7rem 0.9rem;
   box-sizing: border-box;
   display: flex;
@@ -303,7 +303,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
   padding-right: 1.5rem;
   padding-bottom: 1rem;
 }
@@ -346,7 +346,7 @@ body {
   line-height: 1.3rem;
   overflow-y: hidden;
   font-family: "Rubik", sans-serif;
-  padding: 0.6rem 1.1rem;
+  padding: 0.6rem 0.9rem;
   border: none;
   background-color: transparent;
   resize: none;
@@ -510,3 +510,154 @@ button:hover {
 }
 
 /* MEDIA QUERY */
+@media only screen and (max-width: 1250px) {
+  .inner-modal {
+    width: 25vw;
+  }
+}
+
+/* 1024 */
+@media only screen and (max-width: 1024px) {
+  .info-duration {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .inner-modal {
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 950px) and (min-width: 800px) {
+  .comments {
+    width: 70vw;
+  }
+  .text textarea {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+  .text .invisible {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+  .inner-modal {
+    width: 40vw;
+  }
+  .title-modal h1 {
+    font-size: 1.4rem;
+  }
+  .body-modal {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 799px) and (min-width: 600px) {
+  .comments {
+    width: 98vw;
+  }
+  .info-duration {
+    font-size: 0.8rem;
+  }
+  .info-image {
+    width: 35px !important;
+  }
+  .inner-modal {
+    width: 55vw;
+  }
+  .title-modal h1 {
+    font-size: 1.4rem;
+  }
+  .body-modal {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 599px) and (min-width: 375px) {
+  .comments {
+    width: 90vw;
+  }
+  .info-duration {
+    font-size: 0.8rem;
+  }
+  .info-image {
+    width: 35px !important;
+  }
+  .comment {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .comment {
+    position: relative;
+  }
+  .tools {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.2rem;
+  }
+  .scores {
+    flex-direction: row;
+    padding: 0.7rem 1rem;
+    margin-left: 0;
+  }
+  .plus {
+    margin-top: 0.2rem;
+  }
+  .score-value {
+    margin: auto 1.3rem auto 1.1rem;
+    color: var(--moderate-blue);
+    font-weight: 500;
+  }
+  .comment-replies {
+    margin-left: 0;
+    padding-left: 1rem;
+  }
+
+  .info-co {
+    padding: 0.7rem;
+  }
+
+  .inner-modal {
+    width: 80vw;
+  }
+  .title-modal h1 {
+    font-size: 1.4rem;
+  }
+  .body-modal {
+    font-size: 1.3rem;
+  }
+  .btns-modal button {
+    padding: 1rem 1.4rem;
+    border-radius: 0.6rem;
+    font-size: 1.1rem;
+  }
+  .edit {
+    padding: 1rem 0rem;
+  }
+
+  /* new comment styling */
+  .comment-new {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 1rem;
+  }
+  .new-info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .text-new {
+    flex: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .comment-new-reply,
+  .comment-new-send {
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-right: 0rem;
+  }
+}

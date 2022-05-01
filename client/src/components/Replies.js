@@ -85,7 +85,7 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
           <div className="comment-info">
             <div className="comment-controllers">
               {currentUser.username === reply.user.username ? (
-                <div className="info">
+                <div className="info-co">
                   <Info
                     profileUser="you"
                     user={reply.user}
@@ -93,7 +93,7 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
                   />
                 </div>
               ) : (
-                <div className="info">
+                <div className="info-co">
                   <Info
                     profileUser="user"
                     user={reply.user}
@@ -101,20 +101,22 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
                   />
                 </div>
               )}
-              {currentUser.username === reply.user.username ? (
-                <div className="comment-delete">
-                  <Delete handleDeleteModal={handleDeleteModal} />
-                  <Edit
-                    handleEditComment={() => {
-                      handleEditComment(textRef, setUpdate);
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="comment-reply">
-                  <Reply handleReply={() => handleReply(setReplyComment)} />
-                </div>
-              )}
+              <div className="tools">
+                {currentUser.username === reply.user.username ? (
+                  <div className="comment-delete">
+                    <Delete handleDeleteModal={handleDeleteModal} />
+                    <Edit
+                      handleEditComment={() => {
+                        handleEditComment(textRef, setUpdate);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="comment-reply">
+                    <Reply handleReply={() => handleReply(setReplyComment)} />
+                  </div>
+                )}
+              </div>
             </div>
             <div className="text text-reply">
               <textarea

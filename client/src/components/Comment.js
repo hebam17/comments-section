@@ -17,7 +17,6 @@ import {
   handleConfirmDeleteComment,
 } from "../utils";
 import { DeleteModal } from "./DeleteModal";
-import axios from "axios";
 
 export default function Comment({ comment, currentUser }) {
   const [text, setText] = useState(comment.content);
@@ -73,7 +72,7 @@ export default function Comment({ comment, currentUser }) {
           <div className="comment-info">
             <div className="comment-controllers">
               {currentUser.username === comment.user.username ? (
-                <div className="info">
+                <div className="info-co">
                   <Info
                     profileUser="you"
                     user={comment.user}
@@ -81,7 +80,7 @@ export default function Comment({ comment, currentUser }) {
                   />
                 </div>
               ) : (
-                <div className="info">
+                <div className="info-co">
                   <Info
                     profileUser="user"
                     user={comment.user}
@@ -90,24 +89,26 @@ export default function Comment({ comment, currentUser }) {
                 </div>
               )}
 
-              {currentUser.username === comment.user.username ? (
-                <div className="comment-delete">
-                  <Delete
-                    handleDeleteModal={() =>
-                      handleDeleteModal(setDisplayModal, deleteRef)
-                    }
-                  />
-                  <Edit
-                    handleEditComment={() => {
-                      handleEditComment(textRef, setUpdate);
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="comment-reply">
-                  <Reply handleReply={() => handleReply(setReplyComment)} />
-                </div>
-              )}
+              <div className="tools">
+                {currentUser.username === comment.user.username ? (
+                  <div className="comment-delete">
+                    <Delete
+                      handleDeleteModal={() =>
+                        handleDeleteModal(setDisplayModal, deleteRef)
+                      }
+                    />
+                    <Edit
+                      handleEditComment={() => {
+                        handleEditComment(textRef, setUpdate);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="comment-reply">
+                    <Reply handleReply={() => handleReply(setReplyComment)} />
+                  </div>
+                )}
+              </div>
             </div>
             <div className="text">
               <textarea
