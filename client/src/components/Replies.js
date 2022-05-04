@@ -59,7 +59,7 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
     <>
       <DeleteModal
         ref={deleteRef}
-        handleCancelDelete={() =>
+        _handleCancelDelete={() =>
           handleCancelDelete(setDisplayModal, deleteRef)
         }
         handleConfirmDeleteReply={() =>

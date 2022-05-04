@@ -1,17 +1,17 @@
 const axios = require("axios");
 
-exports.handleReply = (setReplyComment) => {
+export const handleReply = (setReplyComment) => {
   setReplyComment(true);
 };
 
-exports.handleReplyActive = async (
+export const handleReplyActive = async (
   setReplyComment,
   text,
   comment,
   currentUser
 ) => {
   try {
-    await axios.put(`/comments/reply/${comment._id}`, {
+    await axios.put(`/api/comments/reply/${comment._id}`, {
       content: text,
       type: "reply",
       user: currentUser._id,
@@ -23,9 +23,9 @@ exports.handleReplyActive = async (
   }
 };
 
-exports.handleComment = async (text, setText, currentUser) => {
+export const handleComment = async (text, setText, currentUser) => {
   try {
-    await axios.post("/comments/", {
+    await axios.post("/api/comments/", {
       content: text,
       type: "comment",
       user: currentUser._id,
@@ -37,7 +37,7 @@ exports.handleComment = async (text, setText, currentUser) => {
   }
 };
 
-exports.handleEditComment = (textRef, setUpdate) => {
+export const handleEditComment = (textRef, setUpdate) => {
   textRef.current.readOnly = false;
   textRef.current.focus();
   textRef.current.selectionStart = textRef.current.value.length;
@@ -54,10 +54,10 @@ exports.handleEditComment = (textRef, setUpdate) => {
 //   console.log(err.message);
 // }
 
-exports.handleUpdateComment = async (comment, currentUser, text) => {
+export const handleUpdateComment = async (comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
-    await axios.put(`/comments/${currentUser._id}/${comment._id}`, {
+    await axios.put(`/api/comments/${currentUser._id}/${comment._id}`, {
       content: text,
     });
     window.location.reload(true);
@@ -66,11 +66,11 @@ exports.handleUpdateComment = async (comment, currentUser, text) => {
   }
 };
 
-exports.handleUpdateReply = async (reply, comment, currentUser, text) => {
+export const handleUpdateReply = async (reply, comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
     await axios.put(
-      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`,
+      `/api/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`,
       {
         content: text,
       }
@@ -81,25 +81,25 @@ exports.handleUpdateReply = async (reply, comment, currentUser, text) => {
   }
 };
 
-exports.handleDeleteModal = (setDisplayModal, deleteRef) => {
+export const handleDeleteModal = (setDisplayModal, deleteRef) => {
   console.log("deleteRef:", deleteRef);
   setDisplayModal("block");
   deleteRef.current.style.display = "block";
 };
 
-exports.handleCancelDelete = (setDisplayModal, deleteRef) => {
+export const handleCancelDelete = (setDisplayModal, deleteRef) => {
   setDisplayModal("none");
   deleteRef.current.style.display = "none";
 };
 
-exports.handleConfirmDeleteComment = async (
+export const handleConfirmDeleteComment = async (
   currentUser,
   comment,
   setDisplayModal,
   deleteRef
 ) => {
   try {
-    await axios.delete(`/comments/${currentUser._id}/${comment._id}`);
+    await axios.delete(`/api/comments/${currentUser._id}/${comment._id}`);
     console.log("deleted successfully!");
     setDisplayModal("none");
     deleteRef.current.style.display = "none";
@@ -109,7 +109,7 @@ exports.handleConfirmDeleteComment = async (
   }
 };
 
-exports.handleConfirmDeleteReply = async (
+export const handleConfirmDeleteReply = async (
   currentUser,
   comment,
   reply,
@@ -118,7 +118,7 @@ exports.handleConfirmDeleteReply = async (
 ) => {
   try {
     await axios.delete(
-      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`
+      `/api/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`
     );
     console.log("deleted successfully!");
     setDisplayModal("none");

@@ -17,7 +17,10 @@ export default function Comments({ username }) {
     const getComments = async () => {
       if (location.pathname !== "/") {
         try {
-          const res = await axios.get(`/comments/all`);
+          const res = await axios.get(`/api/comments/all`);
+          console.log(res.data);
+          res.data.sort((a, b) => b.score - a.score);
+          console.log(res.data);
           setComments(res.data);
         } catch (err) {
           console.log(err.message);
@@ -31,7 +34,7 @@ export default function Comments({ username }) {
     const getUser = async () => {
       if (location.pathname !== "/") {
         try {
-          const res = await axios.get(`/users/${params.username}`);
+          const res = await axios.get(`/api/users/${params.username}`);
           // console.log("user:", res.data);
           setUser(res.data);
         } catch (err) {
