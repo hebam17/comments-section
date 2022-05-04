@@ -55,12 +55,17 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
     deleteRef.current.style.display = "block";
   };
 
+  const handleCancelDelete = () => {
+    setDisplayModal("none");
+    deleteRef.current.style.display = "none";
+  };
+
   return (
     <>
       <DeleteModal
         ref={deleteRef}
         handleCancelDelete={() =>
-          _handleCancelDelete(setDisplayModal, deleteRef)
+          handleCancelDelete(setDisplayModal, deleteRef)
         }
         handleConfirmDeleteReply={() =>
           handleConfirmDeleteReply(
