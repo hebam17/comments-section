@@ -92,7 +92,7 @@ export const handleCancelDelete = (setDisplayModal, deleteRef) => {
   deleteRef.current.style.display = "none";
 };
 
-export const _handleConfirmDeleteComment = async (
+export const handleConfirmDeleteComment = async (
   currentUser,
   comment,
   setDisplayModal,
