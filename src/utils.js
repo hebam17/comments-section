@@ -1,10 +1,10 @@
 const axios = require("axios");
 
-exports.handleReply = (setReplyComment) => {
+export const handleReply = (setReplyComment) => {
   setReplyComment(true);
 };
 
-exports.handleReplyActive = async (
+export const handleReplyActive = async (
   setReplyComment,
   text,
   comment,
@@ -23,7 +23,7 @@ exports.handleReplyActive = async (
   }
 };
 
-exports.handleComment = async (text, setText, currentUser) => {
+export const handleComment = async (text, setText, currentUser) => {
   try {
     await axios.post("/comments/", {
       content: text,
@@ -37,7 +37,7 @@ exports.handleComment = async (text, setText, currentUser) => {
   }
 };
 
-exports.handleEditComment = (textRef, setUpdate) => {
+export const handleEditComment = (textRef, setUpdate) => {
   textRef.current.readOnly = false;
   textRef.current.focus();
   textRef.current.selectionStart = textRef.current.value.length;
@@ -54,7 +54,7 @@ exports.handleEditComment = (textRef, setUpdate) => {
 //   console.log(err.message);
 // }
 
-exports.handleUpdateComment = async (comment, currentUser, text) => {
+export const handleUpdateComment = async (comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
     await axios.put(`/comments/${currentUser._id}/${comment._id}`, {
@@ -66,7 +66,7 @@ exports.handleUpdateComment = async (comment, currentUser, text) => {
   }
 };
 
-exports.handleUpdateReply = async (reply, comment, currentUser, text) => {
+export const handleUpdateReply = async (reply, comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
     await axios.put(
@@ -81,13 +81,18 @@ exports.handleUpdateReply = async (reply, comment, currentUser, text) => {
   }
 };
 
-exports.handleDeleteModal = (setDisplayModal, deleteRef) => {
+export const handleDeleteModal = (setDisplayModal, deleteRef) => {
   console.log("deleteRef:", deleteRef);
   setDisplayModal("block");
   deleteRef.current.style.display = "block";
 };
 
-exports._handleConfirmDeleteComment = async (
+export const handleCancelDelete = (setDisplayModal, deleteRef) => {
+  setDisplayModal("none");
+  deleteRef.current.style.display = "none";
+};
+
+export const _handleConfirmDeleteComment = async (
   currentUser,
   comment,
   setDisplayModal,
@@ -104,7 +109,7 @@ exports._handleConfirmDeleteComment = async (
   }
 };
 
-exports.handleConfirmDeleteReply = async (
+export const handleConfirmDeleteReply = async (
   currentUser,
   comment,
   reply,

@@ -13,6 +13,7 @@ import {
   handleEditComment,
   handleUpdateComment,
   handleDeleteModal,
+  handleCancelDelete,
   handleConfirmDeleteComment,
 } from "../utils";
 import { DeleteModal } from "./DeleteModal";
@@ -41,11 +42,6 @@ export default function Comment({ comment, currentUser }) {
 
   const handleText = (e) => {
     setText(e.target.value);
-  };
-
-  const handleCancelDelete = () => {
-    setDisplayModal("none");
-    deleteRef.current.style.display = "none";
   };
 
   return (
