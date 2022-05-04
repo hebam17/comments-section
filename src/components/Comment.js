@@ -13,7 +13,7 @@ import {
   handleEditComment,
   handleUpdateComment,
   handleDeleteModal,
-  handleCancelDelete,
+  _handleCancelDelete,
   handleConfirmDeleteComment,
 } from "../utils";
 import { DeleteModal } from "./DeleteModal";
@@ -49,7 +49,7 @@ export default function Comment({ comment, currentUser }) {
       <DeleteModal
         ref={deleteRef}
         handleCancelDelete={() =>
-          handleCancelDelete(setDisplayModal, deleteRef)
+          _handleCancelDelete(setDisplayModal, deleteRef)
         }
         handleConfirmDeleteComment={() =>
           handleConfirmDeleteComment(

@@ -92,7 +92,7 @@ exports.handleCancelDelete = (setDisplayModal, deleteRef) => {
   deleteRef.current.style.display = "none";
 };
 
-exports.handleConfirmDeleteComment = async (
+exports._handleConfirmDeleteComment = async (
   currentUser,
   comment,
   setDisplayModal,

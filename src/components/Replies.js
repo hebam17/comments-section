@@ -11,7 +11,7 @@ import {
   handleReplyActive,
   handleEditComment,
   handleUpdateReply,
-  handleCancelDelete,
+  _handleCancelDelete,
   handleConfirmDeleteReply,
 } from "../utils";
 
@@ -60,7 +60,7 @@ export default function Replies({ reply, currentUser, commentUser, comment }) {
       <DeleteModal
         ref={deleteRef}
         handleCancelDelete={() =>
-          handleCancelDelete(setDisplayModal, deleteRef)
+          _handleCancelDelete(setDisplayModal, deleteRef)
         }
         handleConfirmDeleteReply={() =>
           handleConfirmDeleteReply(
