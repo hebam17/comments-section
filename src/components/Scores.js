@@ -12,7 +12,7 @@ export default function Scores({ score, currentUser, commentId }) {
       if (location.pathname !== "/") {
         console.log(currentUser.username);
         const res = await axios.put(
-          `/comments/${currentUser._id}/${commentId}/upvote`
+          `/api/comments/${currentUser._id}/${commentId}/upvote`
         );
         console.log(res);
       }
