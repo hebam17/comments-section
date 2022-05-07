@@ -3,8 +3,8 @@ import { useParams, useLocation } from "react-router-dom";
 import Comment from "./Comment";
 import flashData from "../data.json";
 import NewComment from "./NewComment";
-import axios from "axios";
 import { handleComment } from "../utils";
+import { axiosInstance } from "../config";
 
 export default function Comments({ username }) {
   const params = useParams();
@@ -17,7 +17,7 @@ export default function Comments({ username }) {
     const getComments = async () => {
       if (location.pathname !== "/") {
         try {
-          const res = await axios.get(`/api/comments/all`);
+          const res = await axiosInstance.get(`/comments/all`);
           console.log(res.data);
           res.data.sort((a, b) => b.score - a.score);
           console.log(res.data);
@@ -34,7 +34,7 @@ export default function Comments({ username }) {
     const getUser = async () => {
       if (location.pathname !== "/") {
         try {
-          const res = await axios.get(`/api/users/${params.username}`);
+          const res = await axiosInstance.get(`/users/${params.username}`);
           // console.log("user:", res.data);
           setUser(res.data);
         } catch (err) {
