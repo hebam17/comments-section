@@ -4,7 +4,7 @@ import Comment from "./Comment";
 import flashData from "../data.json";
 import NewComment from "./NewComment";
 import { handleComment } from "../utils";
-import { axiosInstance } from "../config";
+import { axiosInstance } from "./config";
 
 export default function Comments({ username }) {
   const params = useParams();

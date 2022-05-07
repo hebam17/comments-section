@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { axiosInstance } from "../config";
+import { axiosInstance } from "./config";
 
 export default function Scores({ score, currentUser, commentId }) {
   const [newScore, setNewScore] = useState(score);
