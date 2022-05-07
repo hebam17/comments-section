@@ -1,4 +1,4 @@
-import { axiosInstance } from "../config";
+import { axiosInstance } from "./components/config";
 
 export const handleReply = (setReplyComment) => {
   setReplyComment(true);
