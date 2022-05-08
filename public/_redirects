@@ -1,2 +1,2 @@
-/api/\* https://mentor-comments-section.herokuapp.com/api/:splat 200
-/\* /index.html 200
+/api/* https://mentor-comments-section.herokuapp.com/api/:splat 200
+/* /index.html 200
