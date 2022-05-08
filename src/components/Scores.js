@@ -12,7 +12,7 @@ export default function Scores({ score, currentUser, commentId }) {
       if (location.pathname !== "/") {
         console.log(currentUser.username);
         const res = await axiosInstance.put(
-          `/comments/${currentUser._id}/${commentId}/upvote`
+          `/api/comments/${currentUser._id}/${commentId}/upvote`
         );
         console.log(res);
       }
@@ -26,7 +26,7 @@ export default function Scores({ score, currentUser, commentId }) {
       if (location.pathname !== "/") {
         console.log(currentUser.username);
         const res = await axiosInstance.put(
-          `/comments/${currentUser._id}/${commentId}/downvote`
+          `/api/comments/${currentUser._id}/${commentId}/downvote`
         );
         console.log(res);
       }

@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://mentor-comments-section.herokuapp.com/api",
+  baseURL: "https://mentor-comments-section.herokuapp.com",
 });

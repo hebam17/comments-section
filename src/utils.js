@@ -11,7 +11,7 @@ export const handleReplyActive = async (
   currentUser
 ) => {
   try {
-    await axiosInstance.put(`/comments/reply/${comment._id}`, {
+    await axiosInstance.put(`/api/comments/reply/${comment._id}`, {
       content: text,
       type: "reply",
       user: currentUser._id,
@@ -25,7 +25,7 @@ export const handleReplyActive = async (
 
 export const handleComment = async (text, setText, currentUser) => {
   try {
-    await axiosInstance.post("/comments/", {
+    await axiosInstance.post("/api/comments/", {
       content: text,
       type: "comment",
       user: currentUser._id,
@@ -46,7 +46,7 @@ export const handleEditComment = (textRef, setUpdate) => {
 };
 
 // try {
-//   await axiosInstance.put(`/comments/${currentUser._id}/${comment._id}`, {
+//   await axiosInstance.put(`/api/comments/${currentUser._id}/${comment._id}`, {
 //     content: text,
 //   });
 //   window.location.reload(true);
@@ -57,7 +57,7 @@ export const handleEditComment = (textRef, setUpdate) => {
 export const handleUpdateComment = async (comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
-    await axiosInstance.put(`/comments/${currentUser._id}/${comment._id}`, {
+    await axiosInstance.put(`/api/comments/${currentUser._id}/${comment._id}`, {
       content: text,
     });
     window.location.reload(true);
@@ -70,7 +70,7 @@ export const handleUpdateReply = async (reply, comment, currentUser, text) => {
   console.log(comment, currentUser);
   try {
     await axiosInstance.put(
-      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`,
+      `/api/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`,
       {
         content: text,
       }
@@ -99,7 +99,9 @@ export const handleConfirmDeleteComment = async (
   deleteRef
 ) => {
   try {
-    await axiosInstance.delete(`/comments/${currentUser._id}/${comment._id}`);
+    await axiosInstance.delete(
+      `/api/comments/${currentUser._id}/${comment._id}`
+    );
     console.log("deleted successfully!");
     setDisplayModal("none");
     deleteRef.current.style.display = "none";
@@ -118,7 +120,7 @@ export const handleConfirmDeleteReply = async (
 ) => {
   try {
     await axiosInstance.delete(
-      `/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`
+      `/api/comments/reply/${currentUser.username}/${comment._id}/${reply._id}`
     );
     console.log("deleted successfully!");
     setDisplayModal("none");
