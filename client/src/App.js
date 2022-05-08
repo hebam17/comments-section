@@ -7,8 +7,8 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Comments username="juliusomo" />} />
           <Route path="/:username" element={<Comments />} />
+          <Route path="/" element={<Comments username="juliusomo" />} />
         </Routes>
       </Router>
       {/* <Scores /> */}

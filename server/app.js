@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const commentRoute = require("./routes/comments");
 const userRoute = require("./routes/users");
+const cors = require("cors");
 // the app
 const app = express();
-
+app.use(cors());
 // mongoose connection
 mongoose
   .connect(process.env.CONNECTION_STRING)
