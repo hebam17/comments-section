@@ -1,6 +1,5 @@
 import Comments from "./components/Comments";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Scores from "./components/Scores";
 
 function App() {
   return (

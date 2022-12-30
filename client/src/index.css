@@ -74,7 +74,10 @@ body {
   width: fit-content;
   color: var(--moderate-blue);
 }
-
+.reply:hover {
+  color: var(--light-grayish-blue);
+  cursor: pointer;
+}
 .reply-text {
   margin-left: 0.5rem;
   font-weight: 600;
@@ -88,10 +91,7 @@ body {
 .reply-image img {
   visibility: hidden;
 }
-.reply:hover {
-  color: var(--light-grayish-blue) !important;
-  cursor: pointer;
-}
+
 .reply:hover .reply-image {
   background-image: url("./hover-images/icon-reply-hover.svg");
   background-repeat: no-repeat;
@@ -133,7 +133,10 @@ body {
   width: fit-content;
   color: var(--moderate-blue);
 }
-
+.edit:hover {
+  color: var(--light-grayish-blue);
+  cursor: pointer;
+}
 .edit-text {
   margin-left: 0.5rem;
   font-weight: 500;
@@ -146,10 +149,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.edit:hover {
-  color: var(--light-grayish-blue) !important;
-  cursor: pointer;
-}
 .edit:hover .edit-image {
   background-image: url("./hover-images/icon-edit-hover.svg");
   background-repeat: no-repeat;
@@ -166,7 +165,10 @@ body {
   width: fit-content;
   color: var(--soft-red);
 }
-
+.delete:hover {
+  color: var(--pale-red);
+  cursor: pointer;
+}
 .delete-text {
   margin-left: 0.5rem;
   font-weight: 500;
@@ -179,10 +181,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.delete:hover {
-  color: var(--pale-red) !important;
-  cursor: pointer;
-}
 .delete:hover .delete-image {
   background-image: url("./hover-images/icon-delete-hover.svg");
   background-repeat: no-repeat;
@@ -291,6 +289,7 @@ body {
   margin-bottom: 1rem;
   border-radius: 5px;
   box-sizing: border-box;
+  padding-top: 0.6rem;
 }
 .comment-scores {
   display: flex;
@@ -310,6 +309,7 @@ body {
 .comment-controllers {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-right: 0;
   margin-bottom: -1rem;
 }
@@ -559,7 +559,7 @@ button:hover {
     font-size: 0.8rem;
   }
   .info-image {
-    width: 35px !important;
+    width: 35px;
   }
   .inner-modal {
     width: 55vw;
@@ -572,7 +572,7 @@ button:hover {
   }
 }
 
-@media screen and (max-width: 599px) and (min-width: 375px) {
+@media screen and (max-width: 599px) and (min-width: 340px) {
   .comments {
     width: 90vw;
   }
@@ -580,7 +580,7 @@ button:hover {
     font-size: 0.8rem;
   }
   .info-image {
-    width: 35px !important;
+    width: 35px;
   }
   .comment {
     display: flex;

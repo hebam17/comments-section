@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { axiosInstance } from "./config";
+import axios from "axios";
 
 export default function Scores({ score, currentUser, commentId }) {
   const [newScore, setNewScore] = useState(score);
@@ -11,7 +11,7 @@ export default function Scores({ score, currentUser, commentId }) {
     const setScore = async () => {
       if (location.pathname !== "/") {
         console.log(currentUser.username);
-        const res = await axiosInstance.put(
+        const res = await axios.put(
           `/api/comments/${currentUser._id}/${commentId}/upvote`
         );
         console.log(res);
@@ -25,7 +25,7 @@ export default function Scores({ score, currentUser, commentId }) {
     const setScore = async () => {
       if (location.pathname !== "/") {
         console.log(currentUser.username);
-        const res = await axiosInstance.put(
+        const res = await axios.put(
           `/api/comments/${currentUser._id}/${commentId}/downvote`
         );
         console.log(res);
